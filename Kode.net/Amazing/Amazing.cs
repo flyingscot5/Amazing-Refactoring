@@ -133,10 +133,10 @@ namespace Kode.net.Amazing
                             Target = 280;
                         break;
                     case 280:
-                        if(verticalArray[equalToRandomNum - 1][someWeirdNum] != 0)
-                            Target = 600;
-                        else
+                        if(verticalArray[equalToRandomNum - 1][someWeirdNum] == 0)
                             Target = 290;
+                        else
+                            Target = 600;
                         break;
                     case 290:
                         if(someWeirdNum - 1 == 0)
@@ -167,14 +167,21 @@ namespace Kode.net.Amazing
                         Target = 340;
                         break;
                     case 340:
-                        if(randomNum == 1)
-                            Target = 940;
-                        else if(randomNum == 2)
-                            Target = 980;
-                        else if(randomNum == 3)
-                            Target = 1020;
-                        else
-                            Target = 350;
+                        switch(randomNum)
+                        {
+                            case 1:
+                                Target = 940;
+                                break;
+                            case 2:
+                                Target = 980;
+                                break;
+                            case 3:
+                                Target = 1020;
+                                break;
+                            default:
+                                Target = 350;
+                                break;
+                        }
                         break;
                     case 350:
                         if(someWeirdNum == verticalNumber)
@@ -190,11 +197,10 @@ namespace Kode.net.Amazing
                         Target = 390;
                         break;
                     case 380:
-                        if(verticalArray[equalToRandomNum][someWeirdNum + 1] != 0)
-                            Target = 410;
-
-                        else
+                        if(verticalArray[equalToRandomNum][someWeirdNum + 1] == 0)
                             Target = 390;
+                        else
+                            Target = 410;
                         break;
                     case 390:
                         randomNum = NextRandomNumber(3);
@@ -232,10 +238,10 @@ namespace Kode.net.Amazing
                             Target = 440;
                         break;
                     case 440:
-                        if(verticalArray[equalToRandomNum + 1][someWeirdNum] != 0)
-                            Target = 530;
-                        else
+                        if(verticalArray[equalToRandomNum + 1][someWeirdNum] == 0)
                             Target = 450;
+                        else
+                            Target = 530;
                         break;
                     case 450:
                         if(someWeirdNum == verticalNumber)
@@ -247,40 +253,31 @@ namespace Kode.net.Amazing
                         if(z == 1)
                             Target = 510;
                         else
-                            Target = 470;
-                        break;
-                    case 470:
-                        q = 1;
-                        Target = 490;
+                            q = 1;
+                            Target = 490;
                         break;
                     case 480:
-                        if(verticalArray[equalToRandomNum][someWeirdNum + 1] != 0)
-                            Target = 510;
-                        else
+                        if(verticalArray[equalToRandomNum][someWeirdNum + 1] == 0)
                             Target = 490;
+                        else
+                            Target = 510;
                         break;
                     case 490:
                         randomNum = NextRandomNumber(3);
-                        Target = 500;
-                        break;
-                    case 500:
-                        if(randomNum == 1)
+                        if (randomNum == 1)
                             Target = 940;
-                        else if(randomNum == 2)
+                        else if (randomNum == 2)
                             Target = 1020;
-                        else if(randomNum == 3)
+                        else if (randomNum == 3)
                             Target = 1090;
                         else
                             Target = 510;
                         break;
                     case 510:
                         randomNum = NextRandomNumber(2);
-                        Target = 520;
-                        break;
-                    case 520:
-                        if(randomNum == 1)
+                        if (randomNum == 1)
                             Target = 940;
-                        else if(randomNum == 2)
+                        else if (randomNum == 2)
                             Target = 1020;
                         else
                             Target = 530;
@@ -347,10 +344,10 @@ namespace Kode.net.Amazing
                             Target = 720;
                         break;
                     case 640:
-                        if(someWeirdNum != verticalNumber)
-                            Target = 670;
-                        else
+                        if(someWeirdNum == verticalNumber)
                             Target = 650;
+                        else
+                            Target = 670;
                         break;
                     case 650:
                         if(z == 1)
