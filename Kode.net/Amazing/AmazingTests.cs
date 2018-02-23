@@ -54,10 +54,10 @@ namespace Kode.net.Amazing
                 ":--:--:--:--:--:--:--:--:--:--:--:  :--:--:--:\r\n";
 
 
-            Amazing.random = new Random(0);
-            Amazing.doit(15, 20);
-            Console.Write(Amazing.result.ToString());
-            Assert.AreEqual(expected, Amazing.result.ToString());
+            Amazing.Random = new Random(0);
+            Amazing.Doit(15, 20);
+            Console.Write(Amazing.Result.ToString());
+            Assert.AreEqual(expected, Amazing.Result.ToString());
         }
 
         [Test]
@@ -77,10 +77,10 @@ namespace Kode.net.Amazing
                 "I        I  I \r\n" +
                 ":--:--:--:  :\r\n";
 
-            Amazing.random = new Random(100);
-            Amazing.doit(4, 5);
-            Console.Write(Amazing.result.ToString());
-            Assert.AreEqual(expected, Amazing.result.ToString());
+            Amazing.Random = new Random(100);
+            Amazing.Doit(4, 5);
+            Console.Write(Amazing.Result.ToString());
+            Assert.AreEqual(expected, Amazing.Result.ToString());
         }
     }
 }
