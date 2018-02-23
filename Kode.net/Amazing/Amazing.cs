@@ -321,29 +321,31 @@ namespace Kode.net.Amazing
                         break;
                     case 640:
                         if(someWeirdNum == verticalNumber)
-                            Target = 650;
+                        {
+                            if(z == 1)
+                            {
+                                Target = 710;
+                            }
+                            else
+                            {
+                                q = 1;
+                                randomNum = NewRandomNumber(3);
+                                Target = 690;
+                            }
+                        }
                         else
                             Target = 670;
                         break;
-                    case 650:
-                        if(z == 1)
-                            Target = 700;
-                        else
-                            Target = 660;
-                        break;
-                    case 660:
-                        q = 1;
-                        Target = 680;
-                        break;
                     case 670:
                         if(verticalArray[equalToRandomNum][someWeirdNum + 1] == 0)
-                            Target = 680;
+                        {
+                            randomNum = NewRandomNumber(3);
+                            Target = 690;
+                        }
                         else
-                            Target = 700;
-                        break;
-                    case 680:
-                        randomNum = NewRandomNumber(3);
-                        Target = 690;
+                        {
+                            Target = 710;
+                        }
                         break;
                     case 690:
                         if(randomNum == 1)
@@ -353,14 +355,13 @@ namespace Kode.net.Amazing
                         else if(randomNum == 3)
                             Target = 1090;
                         else
-                            Target = 700;
-                        break;
-                    case 700:
-                        randomNum = NewRandomNumber(2);
-                        Target = 710;
+                        {
+                            Target = 710;
+                        }
                         break;
                     case 710:
-                        if(randomNum == 1)
+                        randomNum = NewRandomNumber(2);
+                        if (randomNum == 1)
                             Target = 980;
                         else if(randomNum == 2)
                             Target = 1020;
