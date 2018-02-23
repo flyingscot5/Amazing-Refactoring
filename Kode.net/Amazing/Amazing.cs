@@ -410,17 +410,14 @@ namespace Kode.net.Amazing
                             Target = 780;
                         else
                         {
-                            Target = 760;
+                            Target = 770;
                         }
                         break;
                     case 750:
                         if(verticalArray[equalToRandomNum][someWeirdNum + 1] == 0)
-                            Target = 760;
+                            Target = 770;
                         else
                             Target = 780;
-                        break;
-                    case 760:
-                        Target = 770;
                         break;
                     case 770:
                         switch(NewRandomNumber(2))
@@ -498,25 +495,19 @@ namespace Kode.net.Amazing
                         break;
                     case 890:
                         if(z == 1)
-                            Target = 930;
+                            Target = 210;
                         else
                             Target = 900;
                         break;
                     case 900:
                         someVariableThatGetsCheckedOnce = 1;
-                        Target = 920;
+                        Target = 1090;
                         break;
                     case 910:
                         if(verticalArray[equalToRandomNum][someWeirdNum + 1] == 0)
-                            Target = 920;
+                            Target = 1090;
                         else
-                            Target = 930;
-                        break;
-                    case 920:
-                        Target = 1090;
-                        break;
-                    case 930:
-                        Target = 210;
+                            Target = 210;
                         break;
                     case 940:
                         verticalArray[equalToRandomNum - 1][someWeirdNum] = total;
@@ -530,13 +521,9 @@ namespace Kode.net.Amazing
                         break;
                     case 960:
                         if(total == horizontalNumber*verticalNumber + 1)
-                            Target = 1200;
-
+                            Target = -1;
                         else
-                            Target = 970;
-                        break;
-                    case 970:
-                        Target = 270;
+                            Target = 270;
                         break;
                     case 980:
                         verticalArray[equalToRandomNum][someWeirdNum - 1] = total;
@@ -550,7 +537,7 @@ namespace Kode.net.Amazing
                         horizontalArray[equalToRandomNum][someWeirdNum - 1] = 1;
                         someWeirdNum--;
                         if(total == horizontalNumber*verticalNumber + 1)
-                            Target = 1200;
+                            Target = -1;
                         else
                             Target = 1010;
                         break;
@@ -583,16 +570,16 @@ namespace Kode.net.Amazing
                         break;
                     case 1070:
                         if(total == horizontalNumber*verticalNumber + 1)
-                            Target = 1200;
+                            Target = -1;
                         else
-                            Target = 1080;
-                        break;
-                    case 1080:
-                        Target = 600;
+                            Target = 600;
                         break;
                     case 1090:
                         if(someVariableThatGetsCheckedOnce == 1)
-                            Target = 1150;
+                        {
+                            z = 1;
+                            Target = 1160;
+                        }
                         else
                             Target = 1100;
                         break;
@@ -600,48 +587,37 @@ namespace Kode.net.Amazing
                         verticalArray[equalToRandomNum][someWeirdNum + 1] = total;
                         total++;
                         if(horizontalArray[equalToRandomNum][someWeirdNum] == 0)
-                            Target = 1120;
+                        {
+                            horizontalArray[equalToRandomNum][someWeirdNum] = 1;
+                            Target = 1130;
+                        }
                         else
-                            Target = 1110;
-                        break;
-                    case 1110:
-                        horizontalArray[equalToRandomNum][someWeirdNum] = 3;
-                        Target = 1130;
-                        break;
-                    case 1120:
-                        horizontalArray[equalToRandomNum][someWeirdNum] = 1;
-                        Target = 1130;
+                        {
+                            horizontalArray[equalToRandomNum][someWeirdNum] = 3;
+                            Target = 1130;
+                        }
                         break;
                     case 1130:
                         someWeirdNum++;
                         if(total == verticalNumber*horizontalNumber + 1)
-                            Target = 1200;
+                            Target = -1;
                         else
                             Target = 270;
                         break;
-                    case 1150:
-                        z = 1;
-                        Target = 1160;
-                        break;
                     case 1160:
                         if(horizontalArray[equalToRandomNum][someWeirdNum] == 0)
-                            Target = 1180;
+                        {
+                            horizontalArray[equalToRandomNum][someWeirdNum] = 1;
+                            someVariableThatGetsCheckedOnce = 0;
+                            equalToRandomNum = 1;
+                            someWeirdNum = 1;
+                            Target = 260;
+                        }
                         else
-                            Target = 1170;
-                        break;
-                    case 1170:
-                        horizontalArray[equalToRandomNum][someWeirdNum] = 3;
-                        Target = 210;
-                        break;
-                    case 1180:
-                        horizontalArray[equalToRandomNum][someWeirdNum] = 1;
-                        someVariableThatGetsCheckedOnce = 0;
-                        equalToRandomNum = 1;
-                        someWeirdNum = 1;
-                        Target = 260;
-                        break;
-                    case 1200:
-                        Target = -1;
+                        {
+                            horizontalArray[equalToRandomNum][someWeirdNum] = 3;
+                            Target = 210;
+                        }
                         break;
                 }
             }
