@@ -292,10 +292,7 @@ namespace Kode.net.Amazing
                         if(z == 1)
                             Target = 590;
                         else
-                            Target = 550;
-                        break;
-                    case 550:
-                        q = 1;
+                            q = 1;
                         Target = 570;
                         break;
                     case 560:
@@ -306,12 +303,9 @@ namespace Kode.net.Amazing
                         break;
                     case 570:
                         randomNum = NextRandomNumber(2);
-                        Target = 580;
-                        break;
-                    case 580:
-                        if(randomNum == 1)
+                        if (randomNum == 1)
                             Target = 940;
-                        else if(randomNum == 2)
+                        else if (randomNum == 2)
                             Target = 1090;
                         else
                             Target = 590;
