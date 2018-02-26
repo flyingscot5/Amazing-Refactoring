@@ -8,7 +8,7 @@ namespace Kode.net.Amazing
     {
 
         [Test]
-        public void testSeed0size15x20()
+        public void TestSeed0Size15X20()
         {
             string expected = "Amazing - Copyright by Creative Computing, Morristown, NJ\r\n" +
                 ":--:--:--:--:--:--:--:--:--:--:  :--:--:--:--:\r\n" +
@@ -61,7 +61,7 @@ namespace Kode.net.Amazing
         }
 
         [Test]
-        public void testSeed100size4x5()
+        public void TestSeed100Size4X5()
         {
             string expected =
                 "Amazing - Copyright by Creative Computing, Morristown, NJ\r\n" +
@@ -81,6 +81,16 @@ namespace Kode.net.Amazing
             Amazing.doit(4, 5);
             Console.Write(Amazing.result.ToString());
             Assert.AreEqual(expected, Amazing.result.ToString());
+        }
+
+
+
+        [Test]
+        public void TestSeedRandomSize()
+        {
+            Amazing.random = new Random(2002);
+            Amazing.doit(5, 5);
+            Console.Write(Amazing.result.ToString());
         }
     }
 }
