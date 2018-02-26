@@ -6,648 +6,679 @@
  * as a refactoring challenge.
  * + This transliteration to Java was created by Bill Wake, William.Wake@acm.org
  */
-
 using System;
 using System.Text;
 
 namespace Kode.net.Amazing
 {
+
     public class Amazing
     {
-        private static int Target;
-        public static Random Random = new Random(0);
-        public static StringBuilder Result = new StringBuilder();
+        static int target = 0;      // where GOTO goes
+        public static Random random = new Random(0);
+        public static StringBuilder result = new StringBuilder();
 
-        public static void Main(string[] args)
+        public static void main(String[] args)
         {
-            Doit(int.Parse(args[0]), int.Parse(args[1]));
-            Console.WriteLine(Result);
+            doit(int.Parse(args[0]), int.Parse(args[1]));
+            Console.WriteLine(result);
         }
 
-        private static void Clear()
+        private static void clear()
         {
-            Result = new StringBuilder();
+            result = new StringBuilder();
         }
 
-        private static void Println()
+        private static void println()
         {
-            Result.AppendLine();
+            result.AppendLine();
         }
 
-        public static void Print(string text)
+        public static void print(string text)
         {
-            Result.Append(text);
+            result.Append(text);
         }
 
-        public static int NewRandomNumber(int count)
+        public static int rnd(int count)
         {
-            return (int)( count*Random.NextDouble() ) + 1;
+            return (int)(count * random.NextDouble()) + 1;
         }
 
-
-        public static void Doit(int horizontalNumber, int verticalNumber)
+        public static void GOTO(int lineno)
         {
-            Clear();
-            Print("Amazing - Copyright by Creative Computing, Morristown, NJ");
-            Println();
+            target = lineno;
+        }
 
-            if(horizontalNumber == 1 || verticalNumber == 1) return;
+        public static void doit(int horizontal, int vertical)
+        {
+            clear();
+            print("Amazing - Copyright by Creative Computing, Morristown, NJ");
+            println();
 
-            var horizontalArray = new int[horizontalNumber + 1][];
-            var verticalArray = new int[horizontalNumber + 1][];
+            int h = horizontal;
+            int v = vertical;
+            if (h == 1 || v == 1) return;
 
-            for(var i = 0; i <= horizontalNumber; i++)
+            int[][] wArray = new int[h + 1][];
+
+            for (int i = 0; i <= h; i++)
             {
-                verticalArray[i] = new int[verticalNumber + 1];
+                wArray[i] = new int[v + 1];
             }
 
-            for(var i = 0; i <= horizontalNumber; i++)
+            int[][] vArray = new int[h + 1][];
+            for (int i = 0; i <= h; i++)
             {
-                horizontalArray[i] = new int[verticalNumber + 1];
+                vArray[i] = new int[v + 1];
             }
 
-            var someVariableThatGetsCheckedOnce = 0;
-            var z = 0;
-            var randomNum = NewRandomNumber(horizontalNumber);
+            int q = 0;
+            int z = 0;
+            int x = rnd(h);
 
-            var total = 1;
-            verticalArray[randomNum][1] = total;
-            total++;
-
-            var equalToRandomNum = randomNum;
-            var someWeirdNum = 1;
-
-
-            for(var i = 1; i <= horizontalNumber; i++)
+            // 130:170
+            for (int i = 1; i <= h; i++)
             {
-                if(i == randomNum)
-                    Print(":  ");
+                if (i == x)
+                    print(":  ");
                 else
-                    Print(":--");
+                    print(":--");
             }
+            // 180
+            print(":");
+            println();
 
-            Print(":");
-            Println();
+            // 190
+            int c = 1;
+            wArray[x][1] = c;
+            c++;
 
-            Target = 270;
+            // 200
+            int r = x;
+            int s = 1;
+            GOTO(270);
 
-            while(Target > 0)
+            while (target != -1)
             {
-                switch(Target)
+                switch (target)
                 {
                     case 210:
-                        if(equalToRandomNum == horizontalNumber)
-                            Target = 220;
+                        if (r != h)
+                            GOTO(250);
                         else
-                        {
-                            equalToRandomNum++;
-                            Target = 260;
-                        }
-                        break;
+                            GOTO(220);
+                        continue;
                     case 220:
-                        if(someWeirdNum == verticalNumber)
-                        {
-                            equalToRandomNum = 1;
-                            someWeirdNum = 1;
-                            Target = 260;
-                        }
+                        if (s != v)
+                            GOTO(240);
                         else
-                        {
-                            equalToRandomNum = 1;
-                            someWeirdNum++;
-                            Target = 260;
-                        }
-                        break;
+                            GOTO(230);
+                        continue;
+                    case 230:
+                        r = 1;
+                        s = 1;
+                        GOTO(260);
+                        continue;
+                    case 240:
+                        r = 1;
+                        s++;
+                        GOTO(260);
+                        continue;
+                    case 250:
+                        r++;
+                        GOTO(260);
+                        continue;
                     case 260:
-                        if(verticalArray[equalToRandomNum][someWeirdNum] == 0)
-                            Target = 210;
+                        if (wArray[r][s] == 0)
+                            GOTO(210);
                         else
-                            Target = 270;
-                        break;
+                            GOTO(270);
+                        continue;
                     case 270:
-                        if(equalToRandomNum == 1)
-                        {
-                            Target = 600;
-                        }
-                        else if(verticalArray[equalToRandomNum - 1][someWeirdNum] == 0)
-                        {
-                            Target = 290;
-                        }
+                        if (r - 1 == 0)
+                            GOTO(600);
                         else
-                        {
-                            Target = 600;
-                        }
-                        break;
+                            GOTO(280);
+                        continue;
+                    case 280:
+                        if (wArray[r - 1][s] != 0)
+                            GOTO(600);
+                        else
+                            GOTO(290);
+                        continue;
                     case 290:
-                        if(someWeirdNum == 1)
-                            Target = 430;
+                        if (s - 1 == 0)
+                            GOTO(430);
                         else
-                        {
-                            if(verticalArray[equalToRandomNum][someWeirdNum - 1] == 0)
-                                Target = 310;
-                            else
-                                Target = 430;
-                        }
-                        break;
+                            GOTO(300);
+                        continue;
+                    case 300:
+                        if (wArray[r][s - 1] != 0)
+                            GOTO(430);
+                        else
+                            GOTO(310);
+                        continue;
                     case 310:
-                        if(equalToRandomNum == horizontalNumber)
-                            Target = 350;
-                        else if(verticalArray[equalToRandomNum + 1][someWeirdNum] == 0)
-                        {
-                            Target = 340;
-                        }
+                        if (r == h)
+                            GOTO(350);
                         else
-                            Target = 350;
-                        break;
+                            GOTO(320);
+                        continue;
+                    case 320:
+                        if (wArray[r + 1][s] != 0)
+                            GOTO(350);
+                        else
+                            GOTO(330);
+                        continue;
+                    case 330:
+                        x = rnd(3);
+                        GOTO(340);
+                        continue;
                     case 340:
-                        switch(NewRandomNumber(3))
-                        {
-                            case 1:
-                                Target = 940;
-                                break;
-                            case 2:
-                                Target = 980;
-                                break;
-                            case 3:
-                                Target = 1020;
-                                break;
-                            default:
-                                Target = 350;
-                                break;
-                        }
-                        break;
+                        if (x == 1)
+                            GOTO(940);
+                        else if (x == 2)
+                            GOTO(980);
+                        else if (x == 3)
+                            GOTO(1020);
+                        else
+                            GOTO(350);
+                        continue;
                     case 350:
-                        if(someWeirdNum == verticalNumber)
-                        {
-                            if(z == 1)
-                            {
-                                Target = 420;
-                            }
-                            else
-                            {
-                                Target = 400;
-                            }
-                        }
+                        if (s != v)
+                            GOTO(380);
                         else
-                        {
-                            if(verticalArray[equalToRandomNum][someWeirdNum + 1] == 0)
-                            {
-                                Target = 400;
-                            }
-                            else
-                            {
-                                Target = 420;
-                            }
-                        }
-                        break;
+                            GOTO(360);
+                        continue;
+                    case 360:
+                        if (z == 1)
+                            GOTO(410);
+                        else
+                            GOTO(370);
+                        continue;
+                    case 370:
+                        q = 1;
+                        GOTO(390);
+                        continue;
+                    case 380:
+                        if (wArray[r][s + 1] != 0)
+                            GOTO(410);
+                        else
+                            GOTO(390);
+                        continue;
+                    case 390:
+                        x = rnd(3);
+                        GOTO(400);
+                        continue;
                     case 400:
-                        switch(NewRandomNumber(3))
-                        {
-                            case 1:
-                                Target = 940;
-                                break;
-                            case 2:
-                                Target = 980;
-                                break;
-                            case 3:
-                                Target = 1090;
-                                break;
-                            default:
-                                Target = 420;
-                                break;
-                        }
-                        break;
+                        if (x == 1)
+                            GOTO(940);
+                        else if (x == 2)
+                            GOTO(980);
+                        else if (x == 3)
+                            GOTO(1090);
+                        else
+                            GOTO(410);
+                        continue;
+                    case 410:
+                        x = rnd(2);
+                        GOTO(420);
+                        continue;
                     case 420:
-                        switch(NewRandomNumber(2))
-                        {
-                            case 1:
-                                Target = 940;
-                                break;
-                            case 2:
-                                Target = 980;
-                                break;
-                            default:
-                                Target = 430;
-                                break;
-                        }
-                        break;
+                        if (x == 1)
+                            GOTO(940);
+                        else if (x == 2)
+                            GOTO(980);
+                        else
+                            GOTO(430);
+                        continue;
                     case 430:
-                        if(equalToRandomNum == horizontalNumber)
-                            Target = 530;
-                        else if(verticalArray[equalToRandomNum + 1][someWeirdNum] == 0)
-                            Target = 450;
+                        if (r == h)
+                            GOTO(530);
                         else
-                            Target = 530;
-                        break;
+                            GOTO(440);
+                        continue;
+                    case 440:
+                        if (wArray[r + 1][s] != 0)
+                            GOTO(530);
+                        else
+                            GOTO(450);
+                        continue;
                     case 450:
-                        if(someWeirdNum == verticalNumber)
-                            Target = 460;
-                        else if(verticalArray[equalToRandomNum][someWeirdNum + 1] == 0)
-                            Target = 490;
+                        if (s != v)
+                            GOTO(480);
                         else
-                            Target = 510;
-                        break;
+                            GOTO(460);
+                        continue;
                     case 460:
-                        if(z == 1)
-                            Target = 510;
+                        if (z == 1)
+                            GOTO(510);
                         else
-                        {
-                            someVariableThatGetsCheckedOnce = 1;
-                            Target = 490;
-                        }
-                        break;
+                            GOTO(470);
+                        continue;
+                    case 470:
+                        q = 1;
+                        GOTO(490);
+                        continue;
+                    case 480:
+                        if (wArray[r][s + 1] != 0)
+                            GOTO(510);
+                        else
+                            GOTO(490);
+                        continue;
                     case 490:
-                        switch(NewRandomNumber(3))
-                        {
-                            case 1:
-                                Target = 940;
-                                break;
-                            case 2:
-                                Target = 1020;
-                                break;
-                            case 3:
-                                Target = 1090;
-                                break;
-                            default:
-                                Target = 510;
-                                break;
-                        }
-                        break;
+                        x = rnd(3);
+                        GOTO(500);
+                        continue;
+                    case 500:
+                        if (x == 1)
+                            GOTO(940);
+                        else if (x == 2)
+                            GOTO(1020);
+                        else if (x == 3)
+                            GOTO(1090);
+                        else
+                            GOTO(510);
+                        continue;
                     case 510:
-                        switch(NewRandomNumber(2))
-                        {
-                            case 1:
-                                Target = 940;
-                                break;
-                            case 2:
-                                Target = 1020;
-                                break;
-                            default:
-                                Target = 530;
-                                break;
-                        }
-                        break;
+                        x = rnd(2);
+                        GOTO(520);
+                        continue;
+                    case 520:
+                        if (x == 1)
+                            GOTO(940);
+                        else if (x == 2)
+                            GOTO(1020);
+                        else
+                            GOTO(530);
+                        continue;
                     case 530:
-                        if(someWeirdNum == verticalNumber)
-                            Target = 540;
+                        if (s != v)
+                            GOTO(560);
                         else
-                            Target = 560;
-                        break;
+                            GOTO(540);
+                        continue;
                     case 540:
-                        if(z == 1)
-                            Target = 940;
+                        if (z == 1)
+                            GOTO(590);
                         else
-                        {
-                            someVariableThatGetsCheckedOnce = 1;
-                            Target = 570;
-                        }
-                        break;
+                            GOTO(550);
+                        continue;
+                    case 550:
+                        q = 1;
+                        GOTO(570);
+                        continue;
                     case 560:
-                        if(verticalArray[equalToRandomNum][someWeirdNum + 1] == 0)
-                            Target = 570;
+                        if (wArray[r][s + 1] != 0)
+                            GOTO(590);
                         else
-                            Target = 940;
-                        break;
+                            GOTO(570);
+                        continue;
                     case 570:
-                        switch(NewRandomNumber(2))
-                        {
-                            case 1:
-                                Target = 940;
-                                break;
-                            case 2:
-                                Target = 1090;
-                                break;
-                            default:
-                                Target = 940;
-                                break;
-                        }
-                        break;
+                        x = rnd(2);
+                        GOTO(580);
+                        continue;
+                    case 580:
+                        if (x == 1)
+                            GOTO(940);
+                        else if (x == 2)
+                            GOTO(1090);
+                        else
+                            GOTO(590);
+                        continue;
+                    case 590:
+                        GOTO(940);
+                        continue;
                     case 600:
-                        if(someWeirdNum == 1)
-                            Target = 790;
+                        if (s - 1 == 0)
+                            GOTO(790);
                         else
-                            Target = 610;
-                        break;
+                            GOTO(610);
+                        continue;
                     case 610:
-                        if(verticalArray[equalToRandomNum][someWeirdNum - 1] == 0)
-                            Target = 620;
+                        if (wArray[r][s - 1] != 0)
+                            GOTO(790);
                         else
-                            Target = 790;
-                        break;
+                            GOTO(620);
+                        continue;
                     case 620:
-                        if(equalToRandomNum == horizontalNumber)
-                            Target = 720;
+                        if (r == h)
+                            GOTO(720);
                         else
-                            Target = 630;
-                        break;
+                            GOTO(630);
+                        continue;
                     case 630:
-                        if(verticalArray[equalToRandomNum + 1][someWeirdNum] == 0)
-                            Target = 640;
+                        if (wArray[r + 1][s] != 0)
+                            GOTO(720);
                         else
-                            Target = 720;
-                        break;
+                            GOTO(640);
+                        continue;
                     case 640:
-                        if(someWeirdNum == verticalNumber)
-                        {
-                            if(z == 1)
-                            {
-                                Target = 710;
-                            }
-                            else
-                            {
-                                someVariableThatGetsCheckedOnce = 1;
-                                Target = 690;
-                            }
-                        }
-                        else if(verticalArray[equalToRandomNum][someWeirdNum + 1] == 0)
-                        {
-                            Target = 690;
-                        }
+                        if (s != v)
+                            GOTO(670);
                         else
-                        {
-                            Target = 710;
-                        }
-                        break;
+                            GOTO(650);
+                        continue;
+                    case 650:
+                        if (z == 1)
+                            GOTO(700);
+                        else
+                            GOTO(660);
+                        continue;
+                    case 660:
+                        q = 1;
+                        GOTO(680);
+                        continue;
+                    case 670:
+                        if (wArray[r][s + 1] != 0)
+                            GOTO(700);
+                        else
+                            GOTO(680);
+                        continue;
+                    case 680:
+                        x = rnd(3);
+                        GOTO(690);
+                        continue;
                     case 690:
-                        switch(NewRandomNumber(3))
-                        {
-                            case 1:
-                                Target = 980;
-                                break;
-                            case 2:
-                                Target = 1020;
-                                break;
-                            case 3:
-                                Target = 1090;
-                                break;
-                            default:
-                                Target = 710;
-                                break;
-                        }
-                        break;
+                        if (x == 1)
+                            GOTO(980);
+                        else if (x == 2)
+                            GOTO(1020);
+                        else if (x == 3)
+                            GOTO(1090);
+                        else
+                            GOTO(700);
+                        continue;
+                    case 700:
+                        x = rnd(2);
+                        GOTO(710);
+                        continue;
                     case 710:
-                        switch(NewRandomNumber(2))
-                        {
-                            case 1:
-                                Target = 980;
-                                break;
-                            case 2:
-                                Target = 1020;
-                                break;
-                            default:
-                                Target = 720;
-                                break;
-                        }
-                        break;
+                        if (x == 1)
+                            GOTO(980);
+                        else if (x == 2)
+                            GOTO(1020);
+                        else
+                            GOTO(720);
+                        continue;
                     case 720:
-                        if(someWeirdNum == verticalNumber)
-                            Target = 730;
+                        if (s != v)
+                            GOTO(750);
                         else
-                            Target = 750;
-                        break;
+                            GOTO(730);
+                        continue;
                     case 730:
-                        if(z == 1)
-                            Target = 780;
+                        if (z == 1)
+                            GOTO(780);
                         else
-                        {
-                            Target = 770;
-                        }
-                        break;
+                            GOTO(740);
+                        continue;
+                    case 740:
+                        q = 1;
+                        GOTO(760);
+                        continue;
                     case 750:
-                        if(verticalArray[equalToRandomNum][someWeirdNum + 1] == 0)
-                            Target = 770;
+                        if (wArray[r][s + 1] != 0)
+                            GOTO(780);
                         else
-                            Target = 780;
-                        break;
+                            GOTO(760);
+                        continue;
+                    case 760:
+                        x = rnd(2);
+                        GOTO(770);
+                        continue;
                     case 770:
-                        switch(NewRandomNumber(2))
-                        {
-                            case 1:
-                                Target = 980;
-                                break;
-                            case 2:
-                                Target = 1090;
-                                break;
-                            default:
-                                Target = 780;
-                                break;
-                        }
-                        break;
+                        if (x == 1)
+                            GOTO(980);
+                        else if (x == 2)
+                            GOTO(1090);
+                        else
+                            GOTO(780);
+                        continue;
                     case 780:
-                        Target = 980;
-                        break;
+                        GOTO(980);
+                        continue;
                     case 790:
-                        if(equalToRandomNum == horizontalNumber)
-                            Target = 880;
-
+                        if (r == h)
+                            GOTO(880);
                         else
-                            Target = 800;
-                        break;
+                            GOTO(800);
+                        continue;
                     case 800:
-                        if(verticalArray[equalToRandomNum + 1][someWeirdNum] == 0)
-                            Target = 810;
+                        if (wArray[r + 1][s] != 0)
+                            GOTO(880);
                         else
-                            Target = 880;
-                        break;
+                            GOTO(810);
+                        continue;
                     case 810:
-                        if(someWeirdNum == verticalNumber)
-                            Target = 820;
+                        if (s != v)
+                            GOTO(840);
                         else
-                            Target = 840;
-                        break;
+                            GOTO(820);
+                        continue;
                     case 820:
-                        if(z == 1)
-                            Target = 870;
+                        if (z == 1)
+                            GOTO(870);
                         else
-                            Target = 830;
-                        break;
+                            GOTO(830);
+                        continue;
                     case 830:
-                        Target = 990;
-                        break;
+                        q = 1;
+                        GOTO(990);
+                        continue;
                     case 840:
-                        if(verticalArray[equalToRandomNum][someWeirdNum + 1] == 0)
-                            Target = 860;
+                        if (wArray[r][s + 1] != 0)
+                            GOTO(870);
                         else
-                            Target = 870;
-                        break;
+                            GOTO(850);
+                        continue;
+                    case 850:
+                        x = rnd(2);
+                        GOTO(860);
+                        continue;
                     case 860:
-                        switch(NewRandomNumber(2))
-                        {
-                            case 1:
-                                Target = 1020;
-                                break;
-                            case 2:
-                                Target = 1090;
-                                break;
-                            default:
-                                Target = 870;
-                                break;
-                        }
-                        break;
+                        if (x == 1)
+                            GOTO(1020);
+                        else if (x == 2)
+                            GOTO(1090);
+                        else
+                            GOTO(870);
+                        continue;
                     case 870:
-                        Target = 1020;
-                        break;
+                        GOTO(1020);
+                        continue;
                     case 880:
-                        if(someWeirdNum == verticalNumber)
-                            Target = 890;
+                        if (s != v)
+                            GOTO(910);
                         else
-                            Target = 910;
-                        break;
+                            GOTO(890);
+                        continue;
                     case 890:
-                        if(z == 1)
-                            Target = 210;
+                        if (z == 1)
+                            GOTO(930);
                         else
-                            Target = 900;
-                        break;
+                            GOTO(900);
+                        continue;
                     case 900:
-                        someVariableThatGetsCheckedOnce = 1;
-                        Target = 1090;
-                        break;
+                        q = 1;
+                        GOTO(920);
+                        continue;
                     case 910:
-                        if(verticalArray[equalToRandomNum][someWeirdNum + 1] == 0)
-                            Target = 1090;
+                        if (wArray[r][s + 1] != 0)
+                            GOTO(930);
                         else
-                            Target = 210;
-                        break;
+                            GOTO(920);
+                        continue;
+                    case 920:
+                        GOTO(1090);
+                        continue;
+                    case 930:
+                        GOTO(1190);
+                        continue;
                     case 940:
-                        verticalArray[equalToRandomNum - 1][someWeirdNum] = total;
-                        Target = 950;
-                        break;
+                        wArray[r - 1][s] = c;
+                        GOTO(950);
+                        continue;
                     case 950:
-                        total++;
-                        horizontalArray[equalToRandomNum - 1][someWeirdNum] = 2;
-                        equalToRandomNum--;
-                        Target = 960;
-                        break;
+                        c++;
+                        vArray[r - 1][s] = 2;
+                        r--;
+                        GOTO(960);
+                        continue;
                     case 960:
-                        if(total == horizontalNumber*verticalNumber + 1)
-                            Target = -1;
+                        if (c == h * v + 1)
+                            GOTO(1200);
                         else
-                            Target = 270;
-                        break;
+                            GOTO(970);
+                        continue;
+                    case 970:
+                        q = 0;
+                        GOTO(270);
+                        continue;
                     case 980:
-                        verticalArray[equalToRandomNum][someWeirdNum - 1] = total;
-                        Target = 990;
-                        break;
+                        wArray[r][s - 1] = c;
+                        GOTO(990);
+                        continue;
                     case 990:
-                        total++;
-                        Target = 1000;
-                        break;
+                        c++;
+                        GOTO(1000);
+                        continue;
                     case 1000:
-                        horizontalArray[equalToRandomNum][someWeirdNum - 1] = 1;
-                        someWeirdNum--;
-                        if(total == horizontalNumber*verticalNumber + 1)
-                            Target = -1;
+                        vArray[r][s - 1] = 1;
+                        s--;
+                        if (c == h * v + 1)
+                            GOTO(1200);
                         else
-                            Target = 1010;
-                        break;
+                            GOTO(1010);
+                        continue;
                     case 1010:
-                        someVariableThatGetsCheckedOnce = 0;
-                        Target = 270;
-                        break;
+                        q = 0;
+                        GOTO(270);
+                        continue;
                     case 1020:
-                        verticalArray[equalToRandomNum + 1][someWeirdNum] = total;
-                        Target = 1030;
-                        break;
+                        wArray[r + 1][s] = c;
+                        GOTO(1030);
+                        continue;
                     case 1030:
-                        total++;
-                        if(horizontalArray[equalToRandomNum][someWeirdNum] == 0)
-                            Target = 1050;
+                        c++;
+                        if (vArray[r][s] == 0)
+                            GOTO(1050);
                         else
-                            Target = 1040;
-                        break;
+                            GOTO(1040);
+                        continue;
                     case 1040:
-                        horizontalArray[equalToRandomNum][someWeirdNum] = 3;
-                        Target = 1060;
-                        break;
+                        vArray[r][s] = 3;
+                        GOTO(1060);
+                        continue;
                     case 1050:
-                        horizontalArray[equalToRandomNum][someWeirdNum] = 2;
-                        Target = 1060;
-                        break;
+                        vArray[r][s] = 2;
+                        GOTO(1060);
+                        continue;
                     case 1060:
-                        equalToRandomNum++;
-                        Target = 1070;
-                        break;
+                        r++;
+                        GOTO(1070);
+                        continue;
                     case 1070:
-                        if(total == horizontalNumber*verticalNumber + 1)
-                            Target = -1;
+                        if (c == h * v + 1)
+                            GOTO(1200);
                         else
-                            Target = 600;
-                        break;
+                            GOTO(1080);
+                        continue;
+                    case 1080:
+                        GOTO(600);
+                        continue;
                     case 1090:
-                        if(someVariableThatGetsCheckedOnce == 1)
-                        {
-                            z = 1;
-                            Target = 1160;
-                        }
+                        if (q == 1)
+                            GOTO(1150);
                         else
-                            Target = 1100;
-                        break;
+                            GOTO(1100);
+                        continue;
                     case 1100:
-                        verticalArray[equalToRandomNum][someWeirdNum + 1] = total;
-                        total++;
-                        if(horizontalArray[equalToRandomNum][someWeirdNum] == 0)
-                        {
-                            horizontalArray[equalToRandomNum][someWeirdNum] = 1;
-                            Target = 1130;
-                        }
+                        wArray[r][s + 1] = c;
+                        c++;
+                        if (vArray[r][s] == 0)
+                            GOTO(1120);
                         else
-                        {
-                            horizontalArray[equalToRandomNum][someWeirdNum] = 3;
-                            Target = 1130;
-                        }
-                        break;
+                            GOTO(1110);
+                        continue;
+                    case 1110:
+                        vArray[r][s] = 3;
+                        GOTO(1130);
+                        continue;
+                    case 1120:
+                        vArray[r][s] = 1;
+                        GOTO(1130);
+                        continue;
                     case 1130:
-                        someWeirdNum++;
-                        if(total == verticalNumber*horizontalNumber + 1)
-                            Target = -1;
+                        s++;
+                        if (c == v * h + 1)
+                            GOTO(1200);
                         else
-                            Target = 270;
-                        break;
+                            GOTO(1140);
+                        continue;
+                    case 1140:
+                        GOTO(270);
+                        continue;
+                    case 1150:
+                        z = 1;
+                        GOTO(1160);
+                        continue;
                     case 1160:
-                        if(horizontalArray[equalToRandomNum][someWeirdNum] == 0)
-                        {
-                            horizontalArray[equalToRandomNum][someWeirdNum] = 1;
-                            someVariableThatGetsCheckedOnce = 0;
-                            equalToRandomNum = 1;
-                            someWeirdNum = 1;
-                            Target = 260;
-                        }
+                        if (vArray[r][s] == 0)
+                            GOTO(1180);
                         else
-                        {
-                            horizontalArray[equalToRandomNum][someWeirdNum] = 3;
-                            Target = 210;
-                        }
-                        break;
+                            GOTO(1170);
+                        continue;
+                    case 1170:
+                        vArray[r][s] = 3;
+                        q = 0;
+                        GOTO(1190);
+                        continue;
+                    case 1180:
+                        vArray[r][s] = 1;
+                        q = 0;
+                        r = 1;
+                        s = 1;
+                        GOTO(260);
+                        continue;
+                    case 1190:
+                        GOTO(210);
+                        continue;
+                    case 1200:
+                        target = -1;
+                        continue;
                 }
+
             }
 
-
-            for(int j = 1; j <= verticalNumber; j++)
+            // 1200:
+            for (int j = 1; j <= v; j++)
             {
-                Print("I");
+                print("I");        // 1210
 
-                for(int i = 1; i <= horizontalNumber; i++)
+                for (int i = 1; i <= h; i++)
                 {
-                    if(horizontalArray[i][j] >= 2)
-                        Print("   ");
+                    if (vArray[i][j] >= 2)
+                        print("   ");  // 1240
                     else
-                        Print("  I");
+                        print("  I");  // 1260
                 }
 
-                Print(" ");
-                Println();
+                print(" ");   // 1280
+                println();
 
-                for(int i = 1; i <= horizontalNumber; i++)
+                for (int i = 1; i <= h; i++)
                 {
-                    if(horizontalArray[i][j] == 0 || horizontalArray[i][j] == 2)
-                        Print(":--");
+                    if (vArray[i][j] == 0)
+                        print(":--");   // 1300, 1340
+                    else if (vArray[i][j] == 2)
+                        print(":--");  // 1310, 1340
                     else
-                        Print(":  ");
+                        print(":  "); // 1320
                 }
 
-                Print(":");
-                Println();
+                print(":");    // 1360
+                println();
             }
         }
     }
