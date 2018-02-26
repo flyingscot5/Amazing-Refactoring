@@ -39,6 +39,22 @@ namespace Kode.net.Amazing
             return (int)( count*Random.NextDouble() ) + 1;
         }
 
+        public static void NextTotal(int total, int num1, int num2, int num3)
+        {
+            switch (NewRandomNumber(total))
+            {
+                case 1:
+                    Target = num1;
+                    break;
+                case 2:
+                    Target = num2;
+                    break;
+                case 3:
+                    Target = num3;
+                    break;
+            }
+        }
+
 
         public static void Doit(int horizontalNumber, int verticalNumber)
         {
@@ -151,21 +167,7 @@ namespace Kode.net.Amazing
                             Target = 350;
                         break;
                     case 340:
-                        switch(NewRandomNumber(3))
-                        {
-                            case 1:
-                                Target = 940;
-                                break;
-                            case 2:
-                                Target = 980;
-                                break;
-                            case 3:
-                                Target = 1030;
-                                break;
-                            default:
-                                Target = 350;
-                                break;
-                        }
+                        NextTotal(3, 940, 980, 1030);
                         break;
                     case 350:
                         if(someWeirdNum == verticalNumber)
@@ -192,35 +194,10 @@ namespace Kode.net.Amazing
                         }
                         break;
                     case 400:
-                        switch(NewRandomNumber(3))
-                        {
-                            case 1:
-                                Target = 940;
-                                break;
-                            case 2:
-                                Target = 980;
-                                break;
-                            case 3:
-                                Target = 1090;
-                                break;
-                            default:
-                                Target = 420;
-                                break;
-                        }
+                        NextTotal(3, 940, 980, 1090);
                         break;
                     case 420:
-                        switch(NewRandomNumber(2))
-                        {
-                            case 1:
-                                Target = 940;
-                                break;
-                            case 2:
-                                Target = 980;
-                                break;
-                            default:
-                                Target = 430;
-                                break;
-                        }
+                        NextTotal(2, 940, 980, 0);
                         break;
                     case 430:
                         if(equalToRandomNum == horizontalNumber)
@@ -248,35 +225,10 @@ namespace Kode.net.Amazing
                         }
                         break;
                     case 490:
-                        switch(NewRandomNumber(3))
-                        {
-                            case 1:
-                                Target = 940;
-                                break;
-                            case 2:
-                                Target = 1030;
-                                break;
-                            case 3:
-                                Target = 1090;
-                                break;
-                            default:
-                                Target = 510;
-                                break;
-                        }
+                        NextTotal(3, 940, 1030, 1090);
                         break;
                     case 510:
-                        switch(NewRandomNumber(2))
-                        {
-                            case 1:
-                                Target = 940;
-                                break;
-                            case 2:
-                                Target = 1030;
-                                break;
-                            default:
-                                Target = 530;
-                                break;
-                        }
+                        NextTotal(2, 940, 1030, 0);
                         break;
                     case 530:
                         if(someWeirdNum == verticalNumber)
@@ -300,18 +252,7 @@ namespace Kode.net.Amazing
                             Target = 940;
                         break;
                     case 570:
-                        switch(NewRandomNumber(2))
-                        {
-                            case 1:
-                                Target = 940;
-                                break;
-                            case 2:
-                                Target = 1090;
-                                break;
-                            default:
-                                Target = 940;
-                                break;
-                        }
+                        NextTotal(2, 940, 1090, 0);
                         break;
                     case 600:
                         if(someWeirdNum == 1)
@@ -360,35 +301,10 @@ namespace Kode.net.Amazing
                         }
                         break;
                     case 690:
-                        switch(NewRandomNumber(3))
-                        {
-                            case 1:
-                                Target = 980;
-                                break;
-                            case 2:
-                                Target = 1030;
-                                break;
-                            case 3:
-                                Target = 1090;
-                                break;
-                            default:
-                                Target = 710;
-                                break;
-                        }
+                        NextTotal(3, 980, 1030, 1090);
                         break;
                     case 710:
-                        switch(NewRandomNumber(2))
-                        {
-                            case 1:
-                                Target = 980;
-                                break;
-                            case 2:
-                                Target = 1030;
-                                break;
-                            default:
-                                Target = 720;
-                                break;
-                        }
+                        NextTotal(2, 980, 1030, 0);
                         break;
                     case 720:
                         if(someWeirdNum == verticalNumber)
@@ -411,18 +327,7 @@ namespace Kode.net.Amazing
                             Target = 980;
                         break;
                     case 770:
-                        switch(NewRandomNumber(2))
-                        {
-                            case 1:
-                                Target = 980;
-                                break;
-                            case 2:
-                                Target = 1090;
-                                break;
-                            default:
-                                Target = 980;
-                                break;
-                        }
+                        NextTotal(2, 980, 1090, 0);
                         break;
                     case 790:
                         if(equalToRandomNum == horizontalNumber)
@@ -444,43 +349,29 @@ namespace Kode.net.Amazing
                                 Target = 1000;
                         }
                         else
-                            Target = 840;
-                        break;
-                    case 840:
-                        if(verticalArray[equalToRandomNum][someWeirdNum + 1] == 0)
-                            Target = 860;
-                        else
-                            Target = 1030;
+                        {
+                            if(verticalArray[equalToRandomNum][someWeirdNum + 1] == 0)
+                                Target = 860;
+                            else
+                                Target = 1030;
+                        }
                         break;
                     case 860:
-                        switch(NewRandomNumber(2))
-                        {
-                            case 1:
-                                Target = 1030;
-                                break;
-                            case 2:
-                                Target = 1090;
-                                break;
-                            default:
-                                Target = 1030;
-                                break;
-                        }
+                        NextTotal(2, 1030, 1090, 0);
                         break;
                     case 880:
                         if(someWeirdNum == verticalNumber)
-                            Target = 890;
+                        {
+                            if(z == 1)
+                                Target = 210;
+                            else
+                            {
+                                someVariableThatGetsCheckedOnce = 1;
+                                Target = 1090;
+                            }
+                        }
                         else
                             Target = 910;
-                        break;
-                    case 890:
-                        if(z == 1)
-                            Target = 210;
-                        else
-                            Target = 900;
-                        break;
-                    case 900:
-                        someVariableThatGetsCheckedOnce = 1;
-                        Target = 1090;
                         break;
                     case 910:
                         if(verticalArray[equalToRandomNum][someWeirdNum + 1] == 0)
@@ -493,7 +384,7 @@ namespace Kode.net.Amazing
                         total++;
                         horizontalArray[equalToRandomNum - 1][someWeirdNum] = 2;
                         equalToRandomNum--;
-                        if (total == horizontalNumber * verticalNumber + 1)
+                        if(total == horizontalNumber*verticalNumber + 1)
                             Target = -1;
                         else
                             Target = 270;
@@ -525,9 +416,6 @@ namespace Kode.net.Amazing
                         {
                             horizontalArray[equalToRandomNum][someWeirdNum] = 3;
                         }
-                        Target = 1070;
-                        break;
-                    case 1070:
                         equalToRandomNum++;
                         if(total == horizontalNumber*verticalNumber + 1)
                             Target = -1;
