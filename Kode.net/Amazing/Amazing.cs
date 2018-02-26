@@ -39,9 +39,9 @@ namespace Kode.net.Amazing
             return (int)( count*Random.NextDouble() ) + 1;
         }
 
-        public static void NextTotal(int total, int num1, int num2, int num3)
+        public static void NextTargetNumber(int caseLength, int num1, int num2, int num3)
         {
-            switch (NewRandomNumber(total))
+            switch (NewRandomNumber(caseLength))
             {
                 case 1:
                     Target = num1;
@@ -55,6 +55,17 @@ namespace Kode.net.Amazing
             }
         }
 
+        public static void SimpleIf(int input1, int input2, int target1, int target2)
+        {
+            if (input1 == input2)
+            {
+                Target = target1;
+            }
+            else
+            {
+                Target = target2;
+            }
+        }
 
         public static void Doit(int horizontalNumber, int verticalNumber)
         {
@@ -167,37 +178,23 @@ namespace Kode.net.Amazing
                             Target = 350;
                         break;
                     case 340:
-                        NextTotal(3, 940, 980, 1030);
+                        NextTargetNumber(3, 940, 980, 1030);
                         break;
                     case 350:
                         if(someWeirdNum == verticalNumber)
                         {
-                            if(z == 1)
-                            {
-                                Target = 420;
-                            }
-                            else
-                            {
-                                Target = 400;
-                            }
+                            SimpleIf(z, 1, 420, 400);
                         }
                         else
                         {
-                            if(verticalArray[equalToRandomNum][someWeirdNum + 1] == 0)
-                            {
-                                Target = 400;
-                            }
-                            else
-                            {
-                                Target = 420;
-                            }
+                            SimpleIf(verticalArray[equalToRandomNum][someWeirdNum + 1], 0, 400, 420);
                         }
                         break;
                     case 400:
-                        NextTotal(3, 940, 980, 1090);
+                        NextTargetNumber(3, 940, 980, 1090);
                         break;
                     case 420:
-                        NextTotal(2, 940, 980, 0);
+                        NextTargetNumber(2, 940, 980, 0);
                         break;
                     case 430:
                         if(equalToRandomNum == horizontalNumber)
@@ -225,16 +222,13 @@ namespace Kode.net.Amazing
                         }
                         break;
                     case 490:
-                        NextTotal(3, 940, 1030, 1090);
+                        NextTargetNumber(3, 940, 1030, 1090);
                         break;
                     case 510:
-                        NextTotal(2, 940, 1030, 0);
+                        NextTargetNumber(2, 940, 1030, 0);
                         break;
                     case 530:
-                        if(someWeirdNum == verticalNumber)
-                            Target = 540;
-                        else
-                            Target = 560;
+                        SimpleIf(someWeirdNum, verticalNumber, 540, 560);
                         break;
                     case 540:
                         if(z == 1)
@@ -246,37 +240,22 @@ namespace Kode.net.Amazing
                         }
                         break;
                     case 560:
-                        if(verticalArray[equalToRandomNum][someWeirdNum + 1] == 0)
-                            Target = 570;
-                        else
-                            Target = 940;
+                        SimpleIf(verticalArray[equalToRandomNum][someWeirdNum + 1], 0, 570, 940);
                         break;
                     case 570:
-                        NextTotal(2, 940, 1090, 0);
+                        NextTargetNumber(2, 940, 1090, 0);
                         break;
                     case 600:
-                        if(someWeirdNum == 1)
-                            Target = 790;
-                        else
-                            Target = 610;
+                        SimpleIf(someWeirdNum, 1, 790, 610);
                         break;
                     case 610:
-                        if(verticalArray[equalToRandomNum][someWeirdNum - 1] == 0)
-                            Target = 620;
-                        else
-                            Target = 790;
+                        SimpleIf(verticalArray[equalToRandomNum][someWeirdNum - 1], 0, 620, 790);
                         break;
                     case 620:
-                        if(equalToRandomNum == horizontalNumber)
-                            Target = 720;
-                        else
-                            Target = 630;
+                        SimpleIf(equalToRandomNum, horizontalNumber, 720, 630);
                         break;
                     case 630:
-                        if(verticalArray[equalToRandomNum + 1][someWeirdNum] == 0)
-                            Target = 640;
-                        else
-                            Target = 720;
+                        SimpleIf(verticalArray[equalToRandomNum + 1][someWeirdNum], 0, 640, 720);
                         break;
                     case 640:
                         if(someWeirdNum == verticalNumber)
@@ -301,63 +280,43 @@ namespace Kode.net.Amazing
                         }
                         break;
                     case 690:
-                        NextTotal(3, 980, 1030, 1090);
+                        NextTargetNumber(3, 980, 1030, 1090);
                         break;
                     case 710:
-                        NextTotal(2, 980, 1030, 0);
+                        NextTargetNumber(2, 980, 1030, 0);
                         break;
                     case 720:
                         if(someWeirdNum == verticalNumber)
-                            Target = 730;
+                            SimpleIf(z, 1, 980, 770);
                         else
                             Target = 750;
                         break;
-                    case 730:
-                        if(z == 1)
-                            Target = 980;
-                        else
-                        {
-                            Target = 770;
-                        }
-                        break;
                     case 750:
-                        if(verticalArray[equalToRandomNum][someWeirdNum + 1] == 0)
-                            Target = 770;
-                        else
-                            Target = 980;
+                        SimpleIf(verticalArray[equalToRandomNum][someWeirdNum + 1], 0, 770, 980);
                         break;
                     case 770:
-                        NextTotal(2, 980, 1090, 0);
+                        NextTargetNumber(2, 980, 1090, 0);
                         break;
                     case 790:
                         if(equalToRandomNum == horizontalNumber)
                             Target = 880;
                         else
                         {
-                            if(verticalArray[equalToRandomNum + 1][someWeirdNum] == 0)
-                                Target = 810;
-                            else
-                                Target = 880;
+                            SimpleIf(verticalArray[equalToRandomNum + 1][someWeirdNum], 0, 810, 880);
                         }
                         break;
                     case 810:
                         if(someWeirdNum == verticalNumber)
                         {
-                            if(z == 1)
-                                Target = 1030;
-                            else
-                                Target = 1000;
+                            SimpleIf(z, 1, 1030, 1000);
                         }
                         else
                         {
-                            if(verticalArray[equalToRandomNum][someWeirdNum + 1] == 0)
-                                Target = 860;
-                            else
-                                Target = 1030;
+                            SimpleIf(verticalArray[equalToRandomNum][someWeirdNum + 1], 0, 860, 1030);
                         }
                         break;
                     case 860:
-                        NextTotal(2, 1030, 1090, 0);
+                        NextTargetNumber(2, 1030, 1090, 0);
                         break;
                     case 880:
                         if(someWeirdNum == verticalNumber)
@@ -374,10 +333,7 @@ namespace Kode.net.Amazing
                             Target = 910;
                         break;
                     case 910:
-                        if(verticalArray[equalToRandomNum][someWeirdNum + 1] == 0)
-                            Target = 1090;
-                        else
-                            Target = 210;
+                        SimpleIf(verticalArray[equalToRandomNum][someWeirdNum + 1], 0, 1090, 210);
                         break;
                     case 940:
                         verticalArray[equalToRandomNum - 1][someWeirdNum] = total;
@@ -447,10 +403,7 @@ namespace Kode.net.Amazing
                         break;
                     case 1130:
                         someWeirdNum++;
-                        if(total == verticalNumber*horizontalNumber + 1)
-                            Target = -1;
-                        else
-                            Target = 270;
+                        SimpleIf(total, (verticalNumber * horizontalNumber + 1), -1, 270);
                         break;
                     case 1160:
                         if(horizontalArray[equalToRandomNum][someWeirdNum] == 0)
