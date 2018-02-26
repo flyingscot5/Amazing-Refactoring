@@ -15,7 +15,7 @@ namespace Kode.net.Amazing
     public class Amazing
     {
         private static int Target;
-        public static Random Random = new Random(0);
+        public static Random Random = new Random();
         public static StringBuilder Result = new StringBuilder();
 
         public static void Main(string[] args)
@@ -50,9 +50,7 @@ namespace Kode.net.Amazing
             Clear();
             Print("Amazing - Copyright by Creative Computing, Morristown, NJ");
             Println();
-
-            if (horizontalNumber == 1 || verticalNumber == 1) return;
-
+            
             var horizontalArray = new int[horizontalNumber + 1][];
             var verticalArray = new int[horizontalNumber + 1][];
 
@@ -558,17 +556,14 @@ namespace Kode.net.Amazing
                         break;
                     case 1040:
                         horizontalArray[equalToRandomNum][someWeirdNum] = 3;
-                        Target = 1060;
+                        Target = 1070;
                         break;
                     case 1050:
                         horizontalArray[equalToRandomNum][someWeirdNum] = 2;
-                        Target = 1060;
-                        break;
-                    case 1060:
-                        equalToRandomNum++;
                         Target = 1070;
                         break;
                     case 1070:
+                        equalToRandomNum++;
                         if (total == horizontalNumber * verticalNumber + 1)
                             Target = -1;
                         else
@@ -649,6 +644,10 @@ namespace Kode.net.Amazing
                 Print(":");
                 Println();
             }
+      //      Println();
+        //    Print(horizontalNumber+"X");
+          //  Print(verticalNumber+"\n");
+            //Print(someVariableThatGetsCheckedOnce+"\n");
         }
     }
 }
