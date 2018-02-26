@@ -1,9 +1,0 @@
-﻿Kode.net
-
-This solution was created as repository for code katas that I have found. Each folder represents a specific challenge outlined by the "ReadMe.txt" located within. 
-
-You should find all required code and libraries are included.
-
-
-Happy Coding
-Craig Judson
