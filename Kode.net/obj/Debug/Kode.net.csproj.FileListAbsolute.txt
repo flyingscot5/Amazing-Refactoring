@@ -1,6 +1,5 @@
 C:\Users\developer\Documents\GitHub\Amazing-Refactoring\Kode.net\bin\Debug\Kode.net.dll
 C:\Users\developer\Documents\GitHub\Amazing-Refactoring\Kode.net\bin\Debug\Kode.net.pdb
-C:\Users\developer\Documents\GitHub\Amazing-Refactoring\Kode.net\bin\Debug\Moq.dll
 C:\Users\developer\Documents\GitHub\Amazing-Refactoring\Kode.net\bin\Debug\nunit.framework.dll
 C:\Users\developer\Documents\GitHub\Amazing-Refactoring\Kode.net\bin\Debug\nunit.framework.xml
 C:\Users\developer\Documents\GitHub\Amazing-Refactoring\Kode.net\obj\Debug\Kode.net.csprojResolveAssemblyReference.cache
