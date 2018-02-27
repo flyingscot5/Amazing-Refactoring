@@ -84,10 +84,9 @@ namespace Kode.net.Amazing
         }
 
         [Test]
-        public void TestSeedRandomSize()
+        public void TestRandomSeed()
         {
-            Amazing.Random = new Random();
-            Amazing.Doit(5, 5);
+            Amazing.Doit(7, 9);
             Console.Write(Amazing.Result.ToString());
         }
     }
