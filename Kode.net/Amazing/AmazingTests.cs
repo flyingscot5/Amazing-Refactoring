@@ -12,48 +12,47 @@ namespace Kode.net.Amazing
         {
             string expected = "Amazing - Copyright by Creative Computing, Morristown, NJ\r\n" +
                 ":--:--:--:--:--:--:--:--:--:--:  :--:--:--:--:\r\n" +
-                "I                             I        I     I \r\n" +
+                "I                             I        I     I\r\n" +
                 ":  :--:--:--:--:  :--:--:  :--:  :--:--:  :--:\r\n" +
-                "I           I     I     I  I     I     I     I \r\n" +
+                "I           I     I     I  I     I     I     I\r\n" +
                 ":--:--:--:  :  :  :  :  :--:  :  :  :  :--:  :\r\n" +
-                "I        I  I  I     I  I     I     I     I  I \r\n" +
+                "I        I  I  I     I  I     I     I     I  I\r\n" +
                 ":--:  :  :--:  :  :--:  :  :--:--:--:--:  :  :\r\n" +
-                "I     I  I     I     I     I  I           I  I \r\n" +
+                "I     I  I     I     I     I  I           I  I\r\n" +
                 ":  :--:  :  :--:--:  :--:--:  :  :--:  :--:  :\r\n" +
-                "I  I  I     I        I     I  I     I     I  I \r\n" +
+                "I  I  I     I        I     I  I     I     I  I\r\n" +
                 ":  :  :  :--:  :--:--:  :--:  :--:  :--:  :  :\r\n" +
-                "I  I  I     I  I     I        I     I  I  I  I \r\n" +
+                "I  I  I     I  I     I        I     I  I  I  I\r\n" +
                 ":  :  :--:  :--:  :  :  :--:--:  :--:  :  :  :\r\n" +
-                "I  I     I     I  I  I        I  I     I  I  I \r\n" +
+                "I  I     I     I  I  I        I  I     I  I  I\r\n" +
                 ":  :  :  :--:  :--:  :--:  :  :  :  :--:  :  :\r\n" +
-                "I  I  I     I     I  I     I  I  I        I  I \r\n" +
+                "I  I  I     I     I  I     I  I  I        I  I\r\n" +
                 ":  :--:--:  :  :  :  :  :  :--:  :  :--:--:  :\r\n" +
-                "I           I  I     I  I  I     I     I  I  I \r\n" +
+                "I           I  I     I  I  I     I     I  I  I\r\n" +
                 ":--:--:--:--:  :--:--:  :  :  :--:--:  :  :  :\r\n" +
-                "I     I  I        I     I  I  I        I     I \r\n" +
+                "I     I  I        I     I  I  I        I     I\r\n" +
                 ":  :  :  :  :  :  :  :--:  :  :--:--:--:  :--:\r\n" +
-                "I  I  I     I  I     I     I  I        I     I \r\n" +
+                "I  I  I     I  I     I     I  I        I     I\r\n" +
                 ":--:  :  :--:  :--:--:  :--:  :  :--:  :--:  :\r\n" +
-                "I     I  I     I        I     I  I     I  I  I \r\n" +
+                "I     I  I     I        I     I  I     I  I  I\r\n" +
                 ":  :--:  :  :--:  :--:--:  :--:  :  :--:  :  :\r\n" +
-                "I        I  I     I     I     I  I        I  I \r\n" +
+                "I        I  I     I     I     I  I        I  I\r\n" +
                 ":  :--:--:  :--:--:  :  :--:  :  :--:--:  :  :\r\n" +
-                "I        I     I     I     I  I  I     I     I \r\n" +
+                "I        I     I     I     I  I  I     I     I\r\n" +
                 ":--:--:  :--:  :  :  :--:  :  :  :  :--:--:  :\r\n" +
-                "I     I     I  I  I  I     I     I  I        I \r\n" +
+                "I     I     I  I  I  I     I     I  I        I\r\n" +
                 ":  :  :--:  :  :  :  :  :--:--:--:  :  :--:--:\r\n" +
-                "I  I        I     I  I           I  I  I     I \r\n" +
+                "I  I        I     I  I           I  I  I     I\r\n" +
                 ":  :--:--:--:--:--:--:--:  :--:  :  :  :--:  :\r\n" +
-                "I  I        I  I  I     I     I  I           I \r\n" +
+                "I  I        I  I  I     I     I  I           I\r\n" +
                 ":  :--:  :  :--:--:  :  :--:  :--:--:--:--:--:\r\n" +
-                "I     I  I  I     I  I  I           I        I \r\n" +
+                "I     I  I  I     I  I  I           I        I\r\n" +
                 ":--:  :  :  :  :  :  :--:  :--:--:--:  :--:--:\r\n" +
-                "I     I  I     I     I              I        I \r\n" +
+                "I     I  I     I     I              I        I\r\n" +
                 ":  :--:--:--:--:  :  :  :  :  :--:  :--:--:  :\r\n" +
-                "I                 I  I     I     I           I \r\n" +
+                "I                 I  I     I     I           I\r\n" +
                 ":--:--:--:--:--:--:--:--:--:--:--:  :--:--:--:\r\n";
-
-
+            
             Amazing.Random = new Random(0);
             Amazing.Doit(15, 20);
             Console.Write(Amazing.Result.ToString());
@@ -66,15 +65,15 @@ namespace Kode.net.Amazing
             string expected =
                 "Amazing - Copyright by Creative Computing, Morristown, NJ\r\n" +
                 ":--:--:--:  :\r\n" +
-                "I           I \r\n" +
+                "I           I\r\n" +
                 ":  :--:  :--:\r\n" +
-                "I     I  I  I \r\n" +
+                "I     I  I  I\r\n" +
                 ":--:  :  :  :\r\n" +
-                "I  I  I     I \r\n" +
+                "I  I  I     I\r\n" +
                 ":  :  :--:  :\r\n" +
-                "I  I     I  I \r\n" +
+                "I  I     I  I\r\n" +
                 ":  :--:  :  :\r\n" +
-                "I        I  I \r\n" +
+                "I        I  I\r\n" +
                 ":--:--:--:  :\r\n";
 
             Amazing.Random = new Random(100);

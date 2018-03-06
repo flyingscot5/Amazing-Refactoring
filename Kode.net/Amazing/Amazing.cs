@@ -86,16 +86,6 @@ namespace Kode.net.Amazing
             var someWeirdNum = 1;
 
 
-            for(var i = 1; i <= widthOfMaze; i++)
-            {
-                if(i == randomNum)
-                    Print(":  ");
-                else
-                    Print(":--");
-            }
-
-            Print(":\r\n");
-
             Target = 270;
 
             try
@@ -149,7 +139,7 @@ namespace Kode.net.Amazing
                                 Target = 350;
                             else if(verticalArray[equalToRandomNum + 1][someWeirdNum] == 0)
                             {
-                                NextTotal(3, 940, 980, 1030);
+                                NextTotal(3, 940, 1000, 1030);
                             }
                             else
                                 Target = 350;
@@ -157,11 +147,11 @@ namespace Kode.net.Amazing
                         case 350:
                             if(isEqualTo != 1 && someWeirdNum == heightOfMaze || verticalArray[equalToRandomNum][someWeirdNum + 1] == 0 && someWeirdNum != heightOfMaze)
                             {
-                                NextTotal(3, 940, 980, 1090);
+                                NextTotal(3, 940, 1000, 1090);
                             }
                             else
                             {
-                                NextTotal(2, 940, 980, 0);
+                                NextTotal(2, 940, 1000, 0);
                             }
                             break;
                         case 450:
@@ -204,11 +194,11 @@ namespace Kode.net.Amazing
                                     {
                                         if(isEqualTo == 1 && someWeirdNum == heightOfMaze || verticalArray[equalToRandomNum][someWeirdNum + 1] != 0 && someWeirdNum != heightOfMaze)
                                         {
-                                            NextTotal(2, 980, 1030, 0);
+                                            NextTotal(2, 1000, 1030, 0);
                                         }
                                         else
                                         {
-                                            NextTotal(3, 980, 1030, 1090);
+                                            NextTotal(3, 1000, 1030, 1090);
                                         }
                                     }
                                     else
@@ -221,19 +211,19 @@ namespace Kode.net.Amazing
                             break;
                         case 720:
                             if(isEqualTo == 1 && someWeirdNum == heightOfMaze || verticalArray[equalToRandomNum][someWeirdNum + 1] != 0 && someWeirdNum != heightOfMaze)
-                                Target = 980;
+                                Target = 1000;
                             else
-                                NextTotal(2, 980, 1090, 0);
+                                NextTotal(2, 1000, 1090, 0);
                             break;
                         case 790:
                             if(equalToRandomNum == widthOfMaze)
                                 Target = 880;
                             else
                             {
-                                if(verticalArray[equalToRandomNum + 1][someWeirdNum] == 0)
-                                    Target = 810;
-                                else
+                                if(verticalArray[equalToRandomNum + 1][someWeirdNum] != 0)
                                     Target = 880;
+                                else
+                                    Target = 810;
                             }
                             break;
                         case 810:
@@ -277,11 +267,8 @@ namespace Kode.net.Amazing
                             else
                                 Target = 270;
                             break;
-                        case 980:
-                            verticalArray[equalToRandomNum][someWeirdNum - 1] = total;
-                            Target = 1000;
-                            break;
                         case 1000:
+                            verticalArray[equalToRandomNum][someWeirdNum - 1] = total;
                             total++;
                             mazeArray[equalToRandomNum][someWeirdNum - 1] = 1;
                             someWeirdNum--;
@@ -363,11 +350,21 @@ namespace Kode.net.Amazing
                 // ignored
             }
 
-            for(int j = 1; j <= heightOfMaze; j++)
+            for(var i = 1; i <= widthOfMaze; i++)
+            {
+                if(i == randomNum)
+                    Print(":  ");
+                else
+                    Print(":--");
+            }
+
+            Print(":\r\n");
+
+            for(var j = 1; j <= heightOfMaze; j++)
             {
                 Print("I");
 
-                for(int i = 1; i <= widthOfMaze; i++)
+                for(var i = 1; i <= widthOfMaze; i++)
                 {
                     if(mazeArray[i][j] >= 2)
                         Print("   ");
@@ -375,9 +372,9 @@ namespace Kode.net.Amazing
                         Print("  I");
                 }
 
-                Print(" \r\n");
+                Print("\r\n");
 
-                for(int i = 1; i <= widthOfMaze; i++)
+                for(var i = 1; i <= widthOfMaze; i++)
                 {
                     if(mazeArray[i][j] == 0 || mazeArray[i][j] == 2)
                         Print(":--");
