@@ -1,12 +1,3 @@
-/**
- * + The original program is by Jack Hauber, and the source is
- * "Basic Computer Games." Used with permission of David Ahl;
- * see www.SwapMeetDave.com.
- * + This exercise was inspired by Alan Hensel's use of Amazing
- * as a refactoring challenge.
- * + This transliteration to Java was created by Bill Wake, William.Wake@acm.org
- */
-
 using System;
 using System.Text;
 
@@ -55,22 +46,16 @@ namespace Kode.net.Amazing
             }
         }
 
-
         public static void Doit(int widthOfMaze, int heightOfMaze)
         {
             Clear();
-            Print("Amazing - Copyright by Creative Computing, Morristown, NJ\r\n");
 
             var mazeArray = new int[widthOfMaze + 1][];
-            var verticalArray = new int[widthOfMaze + 1][];
+            var mazeSetupArray = new int[widthOfMaze + 1][];
 
             for(var i = 0; i <= widthOfMaze; i++)
             {
-                verticalArray[i] = new int[heightOfMaze + 1];
-            }
-
-            for(var i = 0; i <= widthOfMaze; i++)
-            {
+                mazeSetupArray[i] = new int[heightOfMaze + 1];
                 mazeArray[i] = new int[heightOfMaze + 1];
             }
 
@@ -79,14 +64,13 @@ namespace Kode.net.Amazing
             var randomNum = NewRandomNumber(widthOfMaze);
 
             var total = 1;
-            verticalArray[randomNum][1] = total;
+            mazeSetupArray[randomNum][1] = total;
             total++;
 
-            var equalToRandomNum = randomNum;
-            var someWeirdNum = 1;
+            var currentHeight = randomNum;
+            var currentWidth = 1;
 
-
-            Target = 270;
+            Target = 30;
 
             try
             {
@@ -94,252 +78,235 @@ namespace Kode.net.Amazing
                 {
                     switch(Target)
                     {
-                        case 210:
-                            if(equalToRandomNum == widthOfMaze)
+                        case 10:
+                            if(currentHeight == widthOfMaze)
                             {
-                                if(someWeirdNum == heightOfMaze)
+                                if(currentWidth == heightOfMaze)
                                 {
-                                    someWeirdNum = 1;
+                                    currentWidth = 1;
                                 }
                                 else
                                 {
-                                    someWeirdNum++;
+                                    currentWidth++;
                                 }
-                                equalToRandomNum = 1;
+                                currentHeight = 1;
                             }
                             else
                             {
-                                equalToRandomNum++;
+                                currentHeight++;
                             }
-                            Target = 260;
+                            Target = 20;
                             break;
-                        case 260:
-                            if(verticalArray[equalToRandomNum][someWeirdNum] == 0)
-                                Target = 210;
+                        case 20:
+                            if(mazeSetupArray[currentHeight][currentWidth] == 0)
+                                Target = 10;
                             else
-                                Target = 270;
+                                Target = 30;
                             break;
-                        case 270:
-                            if(verticalArray[equalToRandomNum - 1][someWeirdNum] == 0 && equalToRandomNum != 1)
+                        case 30:
+                            if(mazeSetupArray[currentHeight - 1][currentWidth] == 0 && currentHeight != 1)
                             {
-                                if(verticalArray[equalToRandomNum][someWeirdNum - 1] == 0 && someWeirdNum != 1)
-                                    Target = 310;
-                                else if(equalToRandomNum == widthOfMaze || verticalArray[equalToRandomNum + 1][someWeirdNum] != 0)
-                                    Target = 530;
+                                if(mazeSetupArray[currentHeight][currentWidth - 1] == 0 && currentWidth != 1)
+                                    Target = 40;
+                                else if(currentHeight == widthOfMaze || mazeSetupArray[currentHeight + 1][currentWidth] != 0)
+                                    Target = 80;
                                 else
-                                    Target = 450;
+                                    Target = 60;
                             }
                             else
                             {
-                                Target = 600;
+                                Target = 100;
                             }
                             break;
-                        case 310:
-                            if(equalToRandomNum == widthOfMaze)
-                                Target = 350;
-                            else if(verticalArray[equalToRandomNum + 1][someWeirdNum] == 0)
+                        case 40:
+                            if(currentHeight == widthOfMaze)
+                                Target = 50;
+                            else if(mazeSetupArray[currentHeight + 1][currentWidth] == 0)
                             {
-                                NextTotal(3, 940, 1000, 1030);
+                                NextTotal(3, 150, 160, 170);
                             }
                             else
-                                Target = 350;
+                                Target = 50;
                             break;
-                        case 350:
-                            if(isEqualTo != 1 && someWeirdNum == heightOfMaze || verticalArray[equalToRandomNum][someWeirdNum + 1] == 0 && someWeirdNum != heightOfMaze)
+                        case 50:
+                            if(isEqualTo != 1 && currentWidth == heightOfMaze || mazeSetupArray[currentHeight][currentWidth + 1] == 0 && currentWidth != heightOfMaze)
                             {
-                                NextTotal(3, 940, 1000, 1090);
+                                NextTotal(3, 150, 160, 180);
                             }
                             else
                             {
-                                NextTotal(2, 940, 1000, 0);
+                                NextTotal(2, 150, 160, 0);
                             }
                             break;
-                        case 450:
-                            if(isEqualTo != 1 && someWeirdNum == heightOfMaze)
+                        case 60:
+                            if(isEqualTo != 1 && currentWidth == heightOfMaze)
                             {
                                 someVariableThatGetsCheckedOnce = 1;
-                                Target = 490;
+                                NextTotal(3, 150, 170, 180);
                             }
-                            else if(verticalArray[equalToRandomNum][someWeirdNum + 1] == 0 && someWeirdNum != heightOfMaze)
-                                Target = 490;
+                            else if(mazeSetupArray[currentHeight][currentWidth + 1] == 0 && currentWidth != heightOfMaze)
+                                NextTotal(3, 150, 170, 180);
                             else
-                                NextTotal(2, 940, 1030, 0);
+                                NextTotal(2, 150, 170, 0);
                             break;
-                        case 490:
-                            NextTotal(3, 940, 1030, 1090);
-                            break;
-                        case 530:
-                            if(isEqualTo == 1 && someWeirdNum == heightOfMaze)
-                                Target = 940;
-                            else if(isEqualTo != 1 && someWeirdNum == heightOfMaze)
+                        case 80:
+                            if(isEqualTo == 1 && currentWidth == heightOfMaze)
+                                Target = 150;
+                            else if(isEqualTo != 1 && currentWidth == heightOfMaze)
                             {
                                 someVariableThatGetsCheckedOnce = 1;
-                                Target = 570;
+                                Target = 90;
                             }
-                            else if(verticalArray[equalToRandomNum][someWeirdNum + 1] != 0 && someWeirdNum != heightOfMaze || isEqualTo == 1 && someWeirdNum == heightOfMaze)
-                                Target = 940;
+                            else if(mazeSetupArray[currentHeight][currentWidth + 1] != 0 && currentWidth != heightOfMaze || isEqualTo == 1 && currentWidth == heightOfMaze)
+                                Target = 150;
                             else
-                                Target = 570;
+                                Target = 90;
                             break;
-                        case 570:
-                            NextTotal(2, 940, 1090, 0);
+                        case 90:
+                            NextTotal(2, 150, 180, 0);
                             break;
-                        case 600:
-                            if(verticalArray[equalToRandomNum][someWeirdNum - 1] == 0 && someWeirdNum != 1)
-                                if(equalToRandomNum == widthOfMaze)
-                                    Target = 720;
-                                else
+                        case 100:
+                            if(mazeSetupArray[currentHeight][currentWidth - 1] == 0 && currentWidth != 1)
+                                if(currentHeight == widthOfMaze)
+                                    Target = 110;
+                                else if(mazeSetupArray[currentHeight + 1][currentWidth] == 0)
                                 {
-                                    if(verticalArray[equalToRandomNum + 1][someWeirdNum] == 0)
+                                    if(isEqualTo == 1 && currentWidth == heightOfMaze || mazeSetupArray[currentHeight][currentWidth + 1] != 0 && currentWidth != heightOfMaze)
                                     {
-                                        if(isEqualTo == 1 && someWeirdNum == heightOfMaze || verticalArray[equalToRandomNum][someWeirdNum + 1] != 0 && someWeirdNum != heightOfMaze)
-                                        {
-                                            NextTotal(2, 1000, 1030, 0);
-                                        }
-                                        else
-                                        {
-                                            NextTotal(3, 1000, 1030, 1090);
-                                        }
+                                        NextTotal(2, 160, 170, 0);
                                     }
                                     else
-                                        Target = 720;
+                                    {
+                                        NextTotal(3, 160, 170, 180);
+                                    }
                                 }
-                            else
-                                Target = 790;
-                            break;
-                        case 640:
-                            break;
-                        case 720:
-                            if(isEqualTo == 1 && someWeirdNum == heightOfMaze || verticalArray[equalToRandomNum][someWeirdNum + 1] != 0 && someWeirdNum != heightOfMaze)
-                                Target = 1000;
-                            else
-                                NextTotal(2, 1000, 1090, 0);
-                            break;
-                        case 790:
-                            if(equalToRandomNum == widthOfMaze)
-                                Target = 880;
-                            else
-                            {
-                                if(verticalArray[equalToRandomNum + 1][someWeirdNum] != 0)
-                                    Target = 880;
                                 else
-                                    Target = 810;
-                            }
+                                    Target = 110;
+                            else
+                                Target = 120;
                             break;
-                        case 810:
-                            if(someWeirdNum == heightOfMaze)
+                        case 110:
+                            if(isEqualTo == 1 && currentWidth == heightOfMaze || mazeSetupArray[currentHeight][currentWidth + 1] != 0 && currentWidth != heightOfMaze)
+                                Target = 160;
+                            else
+                                NextTotal(2, 160, 180, 0);
+                            break;
+                        case 120:
+                            if(currentHeight == widthOfMaze || mazeSetupArray[currentHeight + 1][currentWidth] != 0)
+                                Target = 140;
+                            else
+                                Target = 130;
+                            break;
+                        case 130:
+                            if(currentWidth == heightOfMaze)
                             {
                                 if(isEqualTo == 1)
-                                    Target = 1030;
+                                    Target = 170;
                                 else
-                                    Target = 1000;
+                                    Target = 160;
                             }
                             else
                             {
-                                if(verticalArray[equalToRandomNum][someWeirdNum + 1] == 0)
-                                    NextTotal(2, 1030, 1090, 0);
+                                if(mazeSetupArray[currentHeight][currentWidth + 1] == 0)
+                                    NextTotal(2, 170, 180, 0);
                                 else
-                                    Target = 1030;
+                                    Target = 170;
                             }
                             break;
-                        case 880:
-                            if(someWeirdNum == heightOfMaze)
+                        case 140:
+                            if(currentWidth == heightOfMaze)
                             {
                                 if(isEqualTo == 1)
-                                    Target = 210;
+                                    Target = 10;
                                 else
                                 {
-                                    Target = 1090;
+                                    Target = 180;
                                 }
                             }
-                            else if(verticalArray[equalToRandomNum][someWeirdNum + 1] == 0)
-                                Target = 1090;
+                            else if(mazeSetupArray[currentHeight][currentWidth + 1] == 0)
+                                Target = 180;
                             else
-                                Target = 210;
+                                Target = 10;
                             break;
-                        case 940:
-                            verticalArray[equalToRandomNum - 1][someWeirdNum] = total;
+                        case 150:
+                            mazeSetupArray[currentHeight - 1][currentWidth] = total;
                             total++;
-                            mazeArray[equalToRandomNum - 1][someWeirdNum] = 2;
-                            equalToRandomNum--;
+                            mazeArray[currentHeight - 1][currentWidth] = 2;
+                            currentHeight--;
                             if(total == widthOfMaze*heightOfMaze + 1)
                                 Target = -1;
                             else
-                                Target = 270;
+                                Target = 30;
                             break;
-                        case 1000:
-                            verticalArray[equalToRandomNum][someWeirdNum - 1] = total;
+                        case 160:
+                            mazeSetupArray[currentHeight][currentWidth - 1] = total;
                             total++;
-                            mazeArray[equalToRandomNum][someWeirdNum - 1] = 1;
-                            someWeirdNum--;
+                            mazeArray[currentHeight][currentWidth - 1] = 1;
+                            currentWidth--;
                             if(total == widthOfMaze*heightOfMaze + 1)
                                 Target = -1;
                             else
                             {
                                 someVariableThatGetsCheckedOnce = 0;
-                                Target = 270;
+                                Target = 30;
                             }
                             break;
-                        case 1030:
-                            verticalArray[equalToRandomNum + 1][someWeirdNum] = total;
+                        case 170:
+                            mazeSetupArray[currentHeight + 1][currentWidth] = total;
                             total++;
-                            if(mazeArray[equalToRandomNum][someWeirdNum] == 0)
+                            if(mazeArray[currentHeight][currentWidth] == 0)
                             {
-                                mazeArray[equalToRandomNum][someWeirdNum] = 2;
+                                mazeArray[currentHeight][currentWidth] = 2;
                             }
                             else
                             {
-                                mazeArray[equalToRandomNum][someWeirdNum] = 3;
+                                mazeArray[currentHeight][currentWidth] = 3;
                             }
-                            equalToRandomNum++;
+                            currentHeight++;
                             if(total == widthOfMaze*heightOfMaze + 1)
                                 Target = -1;
                             else
-                                Target = 600;
+                                Target = 100;
                             break;
-                        case 1090:
+                        case 180:
                             if(someVariableThatGetsCheckedOnce == 1)
                             {
                                 isEqualTo = 1;
-                                Target = 1160;
+                                Target = 200;
                             }
                             else
-                                Target = 1100;
+                                Target = 190;
                             break;
-                        case 1100:
-                            verticalArray[equalToRandomNum][someWeirdNum + 1] = total;
+                        case 190:
+                            mazeSetupArray[currentHeight][currentWidth + 1] = total;
                             total++;
-                            if(mazeArray[equalToRandomNum][someWeirdNum] == 0)
+                            if(mazeArray[currentHeight][currentWidth] == 0)
                             {
-                                mazeArray[equalToRandomNum][someWeirdNum] = 1;
-                                Target = 1130;
+                                mazeArray[currentHeight][currentWidth] = 1;
                             }
                             else
                             {
-                                mazeArray[equalToRandomNum][someWeirdNum] = 3;
-                                Target = 1130;
+                                mazeArray[currentHeight][currentWidth] = 3;
                             }
-                            break;
-                        case 1130:
-                            someWeirdNum++;
+                            currentWidth++;
                             if(total == heightOfMaze*widthOfMaze + 1)
                                 Target = -1;
                             else
-                                Target = 270;
+                                Target = 30;
                             break;
-                        case 1160:
-                            if(mazeArray[equalToRandomNum][someWeirdNum] == 0)
+                        case 200:
+                            if(mazeArray[currentHeight][currentWidth] == 0)
                             {
-                                mazeArray[equalToRandomNum][someWeirdNum] = 1;
+                                mazeArray[currentHeight][currentWidth] = 1;
                                 someVariableThatGetsCheckedOnce = 0;
-                                equalToRandomNum = 1;
-                                someWeirdNum = 1;
-                                Target = 260;
+                                currentHeight = 1;
+                                currentWidth = 1;
+                                Target = 20;
                             }
                             else
                             {
-                                mazeArray[equalToRandomNum][someWeirdNum] = 3;
-                                Target = 210;
+                                mazeArray[currentHeight][currentWidth] = 3;
+                                Target = 10;
                             }
                             break;
                     }

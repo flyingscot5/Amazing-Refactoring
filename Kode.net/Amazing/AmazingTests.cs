@@ -6,11 +6,10 @@ namespace Kode.net.Amazing
     [TestFixture]
     public class AmazingTests
     {
-
         [Test]
         public void TestSeed0Size15X20()
         {
-            string expected = "Amazing - Copyright by Creative Computing, Morristown, NJ\r\n" +
+            string expected =
                 ":--:--:--:--:--:--:--:--:--:--:  :--:--:--:--:\r\n" +
                 "I                             I        I     I\r\n" +
                 ":  :--:--:--:--:  :--:--:  :--:  :--:--:  :--:\r\n" +
@@ -52,7 +51,7 @@ namespace Kode.net.Amazing
                 ":  :--:--:--:--:  :  :  :  :  :--:  :--:--:  :\r\n" +
                 "I                 I  I     I     I           I\r\n" +
                 ":--:--:--:--:--:--:--:--:--:--:--:  :--:--:--:\r\n";
-            
+
             Amazing.Random = new Random(0);
             Amazing.Doit(15, 20);
             Console.Write(Amazing.Result.ToString());
@@ -63,7 +62,6 @@ namespace Kode.net.Amazing
         public void TestSeed100Size4X5()
         {
             string expected =
-                "Amazing - Copyright by Creative Computing, Morristown, NJ\r\n" +
                 ":--:--:--:  :\r\n" +
                 "I           I\r\n" +
                 ":  :--:  :--:\r\n" +
@@ -85,7 +83,7 @@ namespace Kode.net.Amazing
         [Test]
         public void TestRandomSeed()
         {
-            Amazing.Doit(7, 9);
+            Amazing.Doit(9, 7);
             Console.Write(Amazing.Result.ToString());
         }
     }
