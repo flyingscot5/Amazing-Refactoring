@@ -141,14 +141,12 @@ namespace Kode.net.Amazing
                                 NextTotal(2, 150, 170, 0);
                             break;
                         case 80:
-                            if(isEqualTo == 1 && currentWidth == heightOfMaze)
-                                Target = 150;
-                            else if(isEqualTo != 1 && currentWidth == heightOfMaze)
+                            if(isEqualTo != 1 && currentWidth == heightOfMaze)
                             {
                                 someVariableThatGetsCheckedOnce = 1;
                                 NextTotal(2, 150, 180, 0);
                             }
-                            else if(mazeSetupArray[currentHeight][currentWidth + 1] != 0 && currentWidth != heightOfMaze || isEqualTo == 1 && currentWidth == heightOfMaze)
+                            else if(( isEqualTo == 1 && currentWidth == heightOfMaze ) || ( mazeSetupArray[currentHeight][currentWidth + 1] != 0 && currentWidth != heightOfMaze ))
                                 Target = 150;
                             else
                                 NextTotal(2, 150, 180, 0);
@@ -175,7 +173,7 @@ namespace Kode.net.Amazing
                             }
                             break;
                         case 110:
-                            if(isEqualTo == 1 && currentWidth == heightOfMaze || mazeSetupArray[currentHeight][currentWidth + 1] != 0 && currentWidth != heightOfMaze)
+                            if((isEqualTo == 1 && currentWidth == heightOfMaze) || (mazeSetupArray[currentHeight][currentWidth + 1] != 0 && currentWidth != heightOfMaze))
                                 Target = 160;
                             else
                                 NextTotal(2, 160, 180, 0);
