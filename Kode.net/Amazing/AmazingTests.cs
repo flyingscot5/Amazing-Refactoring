@@ -83,7 +83,7 @@ namespace Kode.net.Amazing
         [Test]
         public void TestRandomSeed()
         {
-            Amazing.Doit(9, 7);
+            Amazing.Doit(15, 9);
             Console.Write(Amazing.Result.ToString());
         }
     }

@@ -87,14 +87,15 @@ namespace Kode.net.Amazing
                         case 10:
                             if(currentHeight == widthOfMaze)
                             {
+                                currentHeight = 1;
                                 if(currentWidth == heightOfMaze)
                                     currentWidth = 1;
                                 else
                                     currentWidth++;
-                                currentHeight = 1;
                             }
                             else
                                 currentHeight++;
+
                             if(mazeSetupArray[currentHeight][currentWidth] == 0)
                                 Target = 10;
                             else
@@ -105,31 +106,31 @@ namespace Kode.net.Amazing
                             if(mazeSetupArray[currentHeight - 1][currentWidth] == 0 && currentHeight != 1)
                             {
                                 if(mazeSetupArray[currentHeight][currentWidth - 1] == 0 && currentWidth != 1)
-                                    Target = 40;
+                                    Target = 30;
                                 else if(currentHeight == widthOfMaze || mazeSetupArray[currentHeight + 1][currentWidth] != 0)
-                                    Target = 80;
+                                    Target = 70;
                                 else
-                                    Target = 60;
+                                    Target = 50;
                             }
                             else
                                 Target = 100;
                             ExitCheck(total, widthOfMaze, heightOfMaze);
                             break;
-                        case 40:
+                        case 30:
                             if(currentHeight == widthOfMaze)
-                                Target = 50;
+                                Target = 40;
                             else if(mazeSetupArray[currentHeight + 1][currentWidth] == 0)
                                 NextTotal(3, 150, 160, 170);
                             else
-                                Target = 50;
+                                Target = 40;
                             break;
-                        case 50:
+                        case 40:
                             if(isEqualTo != 1 && currentWidth == heightOfMaze || mazeSetupArray[currentHeight][currentWidth + 1] == 0 && currentWidth != heightOfMaze)
                                 NextTotal(3, 150, 160, 180);
                             else
                                 NextTotal(2, 150, 160, 0);
                             break;
-                        case 60:
+                        case 50:
                             if(isEqualTo != 1 && currentWidth == heightOfMaze)
                             {
                                 someVariableThatGetsCheckedOnce = 1;
@@ -140,7 +141,7 @@ namespace Kode.net.Amazing
                             else
                                 NextTotal(2, 150, 170, 0);
                             break;
-                        case 80:
+                        case 70:
                             if(isEqualTo != 1 && currentWidth == heightOfMaze)
                             {
                                 someVariableThatGetsCheckedOnce = 1;
@@ -173,7 +174,7 @@ namespace Kode.net.Amazing
                             }
                             break;
                         case 110:
-                            if((isEqualTo == 1 && currentWidth == heightOfMaze) || (mazeSetupArray[currentHeight][currentWidth + 1] != 0 && currentWidth != heightOfMaze))
+                            if(( isEqualTo == 1 && currentWidth == heightOfMaze ) || ( mazeSetupArray[currentHeight][currentWidth + 1] != 0 && currentWidth != heightOfMaze ))
                                 Target = 160;
                             else
                                 NextTotal(2, 160, 180, 0);
@@ -234,15 +235,10 @@ namespace Kode.net.Amazing
                                 mazeArray[currentHeight][currentWidth] = 1;
                             else
                                 mazeArray[currentHeight][currentWidth] = 3;
+
                             if(someVariableThatGetsCheckedOnce == 1)
                             {
                                 isEqualTo = 1;
-                                if(mazeArray[currentHeight][currentWidth] == 0)
-                                {
-                                    someVariableThatGetsCheckedOnce = 0;
-                                    currentHeight = 1;
-                                    currentWidth = 1;
-                                }
                                 Target = 10;
                             }
                             else
