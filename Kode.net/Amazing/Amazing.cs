@@ -85,7 +85,7 @@ namespace Kode.net.Amazing
                     switch(Target)
                     {
                         case 10:
-                            Start(widthOfMaze, heightOfMaze, ref currentHeight, mazeSetupArray, total, ref currentWidth, ref foundSuccefulPath);
+                            Start(widthOfMaze, heightOfMaze, ref currentHeight, mazeSetupArray, total, ref currentWidth);
                             break;
                         case 30:
                             if(currentHeight == widthOfMaze)
@@ -169,12 +169,19 @@ namespace Kode.net.Amazing
                                 Target = 170;
                             break;
                         case 150:
-                            currentHeight = EditCurrentHeight(widthOfMaze, heightOfMaze, currentHeight, mazeArray, currentWidth, mazeSetupArray, ref total);
+                            currentHeight--;
+                            mazeArray[currentHeight][currentWidth] = 2;
+                            Target = 155;
+                            break;
+                        case 155:
+                            total++;
                             foundSuccefulPath = false;
+                            FoundSuccefulPath(widthOfMaze, heightOfMaze, mazeSetupArray, currentHeight, currentWidth, total);
                             break;
                         case 160:
-                            currentWidth = EditCurrentWidth(widthOfMaze, heightOfMaze, currentWidth, mazeArray, currentHeight, mazeSetupArray, ref total);
-                            foundSuccefulPath = false;
+                            currentWidth--;
+                            mazeArray[currentHeight][currentWidth] = 1;
+                            Target = 155;
                             break;
                         case 170:
                             if(mazeArray[currentHeight][currentWidth] == 0)
@@ -196,7 +203,7 @@ namespace Kode.net.Amazing
 
                             if(foundSuccefulPath)
                             {
-                                pathFoundCheck = foundSuccefulPath;
+                                pathFoundCheck = true;
                                 Target = 10;
                             }
                             else
@@ -214,7 +221,7 @@ namespace Kode.net.Amazing
                 // ignored
             }
 
-            /*    try
+/*                try
                 {
                     for(int j = 0; j <= heightOfMaze; j++)
                     {
@@ -237,8 +244,7 @@ namespace Kode.net.Amazing
                 catch(Exception)
                 {
                     //Ignored
-                }
-    */
+                }*/
 
             for(var i = 1; i <= widthOfMaze; i++)
             {
@@ -275,26 +281,9 @@ namespace Kode.net.Amazing
                 Print(":\r\n");
             }
         }
-
-        private static int EditCurrentWidth(int widthOfMaze, int heightOfMaze, int currentWidth, int[][] mazeArray, int currentHeight, int[][] mazeSetupArray, ref int total)
-        {
-            currentWidth--;
-            mazeArray[currentHeight][currentWidth] = 1;
-            total++;
-            FoundSuccefulPath(widthOfMaze, heightOfMaze, mazeSetupArray, currentHeight, currentWidth, total);
-            return currentWidth;
-        }
-
-        private static int EditCurrentHeight(int widthOfMaze, int heightOfMaze, int currentHeight, int[][] mazeArray, int currentWidth, int[][] mazeSetupArray, ref int total)
-        {
-            currentHeight--;
-            mazeArray[currentHeight][currentWidth] = 2;
-            total++;
-            FoundSuccefulPath(widthOfMaze, heightOfMaze, mazeSetupArray, currentHeight, currentWidth, total);
-            return currentHeight;
-        }
-
-        private static void Start(int widthOfMaze, int heightOfMaze, ref int currentHeight, int[][] mazeSetupArray, int total, ref int currentWidth, ref bool foundSuccefulPath)
+        
+        
+        private static void Start(int widthOfMaze, int heightOfMaze, ref int currentHeight, int[][] mazeSetupArray, int total, ref int currentWidth)
         {
             if(currentHeight == widthOfMaze)
             {
@@ -310,7 +299,6 @@ namespace Kode.net.Amazing
                 Target = 10;
             else
             {
-                foundSuccefulPath = false;
                 FoundSuccefulPath(widthOfMaze, heightOfMaze, mazeSetupArray, currentHeight, currentWidth, total);
             }
         }
